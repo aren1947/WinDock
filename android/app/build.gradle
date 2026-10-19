@@ -11,9 +11,23 @@ android {
         applicationId 'com.windock.app'
         minSdk 24
         targetSdk 34
-        versionCode 5
-        versionName '0.2.3-aren.1'
+        versionCode 6
+        versionName '0.2.4-aren.1'
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+    }
+
+    // Aren's fork: with ANDROID_KEYSTORE (the release workflow writes it from a secret) every build is signed with the same
+    // key, so a new APK installs over the old one. Without it (a local build), Android's own debug key, as before.
+    signingConfigs {
+        debug {
+            if (System.getenv('ANDROID_KEYSTORE')) {
+                storeFile file(System.getenv('ANDROID_KEYSTORE'))
+                storeType 'pkcs12'
+                storePassword System.getenv('ANDROID_KEYSTORE_PASSWORD')
+                keyAlias 'aren'
+                keyPassword System.getenv('ANDROID_KEYSTORE_PASSWORD')
+            }
+        }
     }
 
     buildTypes {

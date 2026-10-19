@@ -10,7 +10,7 @@ on:
       release_tag:
         description: New release tag (used only when creating a draft)
         type: string
-        default: v0.2.3-aren.1
+        default: v0.2.4-aren.1
   push:
     branches: [main]
     paths:
@@ -74,7 +74,17 @@ jobs:
           java-version: '21'
       - name: Prepare Android SDK
         run: '"$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-34" "build-tools;34.0.0"'
+      - name: Write Aren's signing key
+        env:
+          ANDROID_KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_B64 }}
+        run: |
+          if [ -n "$ANDROID_KEYSTORE_B64" ]; then
+            echo "$ANDROID_KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/aren.p12"
+            echo "ANDROID_KEYSTORE=$RUNNER_TEMP/aren.p12" >> "$GITHUB_ENV"
+          fi
       - name: Build and check Android preview
+        env:
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
         working-directory: android
         run: bash ./gradlew assembleDebug testDebugUnitTest lintDebug --no-daemon --console=plain
       - name: Verify APK and give it a stable download name
