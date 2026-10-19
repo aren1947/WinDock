@@ -50,11 +50,11 @@ internal sealed record UpdateResult(UpdateStatus Status, string? Version = null,
 
 internal sealed class UpdateChecker(HttpClient http, string installedVersion)
 {
-    internal const string ManifestUrl = "https://windock.vercel.app/downloads.json";
-    internal const string ReleasesUrl = "https://github.com/aliihsaad/WinDock/releases";
+    internal const string ManifestUrl = "https://raw.githubusercontent.com/aren1947/WinDock/main/feed/downloads.json";  // Aren's fork: the release workflow commits it (no redirects)
+    internal const string ReleasesUrl = "https://github.com/aren1947/WinDock/releases";
     internal static string InstalledVersion => (typeof(UpdateChecker).Assembly
         .GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion
-        ?? "0.2.2-preview.1").Split('+')[0];
+        ?? "0.2.3-aren.1").Split('+')[0];
 
     public async Task<UpdateResult> CheckAsync(CancellationToken cancellationToken = default)
     {
