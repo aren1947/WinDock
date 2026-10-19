@@ -214,7 +214,7 @@ internal sealed partial class TrayApp : ApplicationContext
             }
             else MessageBox.Show(result.Status == UpdateStatus.Current
                 ? $"You’re up to date.\nInstalled version: {UpdateChecker.InstalledVersion}"
-                : "Couldn’t check for updates. Check your internet connection and try again. You can also find releases at github.com/aliihsaad/WinDock/releases.",
+                : "Couldn’t check for updates. Check your internet connection and try again. You can also find releases at github.com/aren1947/WinDock/releases.",
                 "WinDock updates", MessageBoxButtons.OK, result.Status == UpdateStatus.Current ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
         }
         finally
