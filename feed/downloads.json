@@ -1,0 +1,16 @@
+{
+  "version": "0.2.3-aren.1",
+  "available": true,
+  "generatedAt": "2026-10-19T19:32:05.1653300Z",
+  "windows": {
+    "bytes": 123136655,
+    "sha256": "76e0f7b91391cdc7d5ffa74c5cd9b19338479227de0fcafaec524daba523418e",
+    "url": "https://github.com/aren1947/WinDock/releases/download/v0.2.3-aren.1/WinDockSetup.exe"
+  },
+  "android": {
+    "bytes": 2102585,
+    "sha256": "f38cb20985d2901e89606212c28cda0dc9489a3b57c87760b19f4cae172916a1",
+    "url": "https://github.com/aren1947/WinDock/releases/download/v0.2.3-aren.1/WinDock-android-debug.apk"
+  },
+  "checksums": "https://github.com/aren1947/WinDock/releases/download/v0.2.3-aren.1/SHA256SUMS.txt"
+}
